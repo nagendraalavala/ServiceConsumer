@@ -1,4 +1,4 @@
-package com.example.retailservice;
+package com.example.retailservice.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,6 @@ public class RetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String status;
     private String product;
 
 }

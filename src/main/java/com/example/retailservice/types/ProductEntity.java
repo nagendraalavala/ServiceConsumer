@@ -1,4 +1,4 @@
-package com.example.retailservice;
+package com.example.retailservice.types;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +15,6 @@ public class ProductEntity
     private double cost;
     private String stock;
 
+    public ProductEntity(String s) {
+    }
 }

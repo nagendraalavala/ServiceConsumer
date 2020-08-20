@@ -1,5 +1,6 @@
-package com.example.retailservice;
+package com.example.retailservice.Repo;
 
+import com.example.retailservice.Entity.RetailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
