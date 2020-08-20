@@ -5,7 +5,6 @@ import com.example.retailservice.Exception.BadRequestException;
 import com.example.retailservice.Service.RetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +19,11 @@ public class RetailController
     private RetailService retailService;
 
     @PostMapping("/add")
-    public ResponseEntity<RetailEntity> RetailAdd(@RequestBody RetailEntity retailEntity) throws BadRequestException {   RetailEntity response =retailService.checkThroughFeign(retailEntity);
-        return response != null ? new ResponseEntity<>(response, HttpStatus.CREATED) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Object> RetailAdd(@RequestBody RetailEntity retailEntity) throws BadRequestException {
+        //RetailEntity response =retailService.checkThroughFeign(retailEntity);
+        //return response != null ? new ResponseEntity<>(response, HttpStatus.CREATED) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+        return retailService.checkThroughFeign(retailEntity);
 
     }
 

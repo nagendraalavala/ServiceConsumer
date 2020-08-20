@@ -2,12 +2,15 @@ package com.example.retailservice.Service;
 
 
 import com.example.retailservice.Entity.RetailEntity;
+import com.example.retailservice.Exception.BadRequestException;
 import com.example.retailservice.Feign.feignClient;
 import com.example.retailservice.Repo.RetailRepository;
 import com.example.retailservice.types.ProductEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,17 +37,14 @@ public class RetailService
     }
 
 
-    public RetailEntity checkThroughFeign(RetailEntity retailEntity)
+    public ResponseEntity<Object> checkThroughFeign(RetailEntity retailEntity)
     {
         ProductEntity productEntity = feign.productRespone(retailEntity.getId());
         if(productEntity.getStock().equals("Active"))
         {
-            return repo.save(retailEntity);
+            return new ResponseEntity<>(repo.save(retailEntity), HttpStatus.CREATED);
         }
-        else
-        {
-            return null ;
-        }
+       return new ResponseEntity<>(new BadRequestException("Bad Request"), HttpStatus.BAD_REQUEST);
 
 
     }
