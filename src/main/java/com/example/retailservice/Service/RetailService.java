@@ -22,16 +22,15 @@ public class RetailService
 {
 
     private RetailEntity retailEntity;
-
-    @Autowired
-    feignClient feign;
+    private   feignClient feign;
     private RetailRepository repo;
 
 
     @Autowired
-    public RetailService(
+    public RetailService(feignClient feign,
              RetailRepository repo) {
         this.retailEntity = new RetailEntity();
+        this.feign = feign;
 
         this.repo = repo;
     }
